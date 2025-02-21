@@ -7,11 +7,18 @@ import (
 )
 
 func main() {
-	genesisBlock := blockchain.CreateGenesisBlock()
-	fmt.Println("Genesis Block:")
-	fmt.Printf("Index: %d\n", genesisBlock.Index)
-	fmt.Printf("Timestamp: %s\n", genesisBlock.Timestamp)
-	fmt.Printf("Data: %s\n", genesisBlock.Data)
-	fmt.Printf("Previous Hash: %s\n", genesisBlock.PrevHash)
-	fmt.Printf("Hash: %s\n", genesisBlock.Hash)
+	chain := blockchain.NewBlockchain()
+
+	chain.AddBlock("Alice sent 5 BTC to Bob")
+	chain.AddBlock("Bob sent 2 BTC to Charlie")
+
+	for _, block := range chain.Blocks {
+		fmt.Printf("Index: %d\n", block.Index)
+		fmt.Printf("Timestamp: %s\n", block.Timestamp)
+		fmt.Printf("Data: %s\n", block.Data)
+		fmt.Printf("Previous Hash: %s\n", block.PrevHash)
+		fmt.Printf("Hash: %s\n", block.Hash)
+		fmt.Printf("Nonce: %d\n", block.Nonce)
+	}
+
 }
