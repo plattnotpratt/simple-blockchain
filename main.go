@@ -20,5 +20,6 @@ func main() {
 		fmt.Printf("Hash: %s\n", block.Hash)
 		fmt.Printf("Nonce: %d\n", block.Nonce)
 	}
+	fmt.Println("\nBlockchain valid?", chain.IsValid())
 
 }
