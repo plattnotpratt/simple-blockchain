@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-func testCalculateHash(t *testing.T) {
+func TestCalculateHash(t *testing.T) {
 	dt := time.Now().String()
 	b := Block{
 		Index:        1,
