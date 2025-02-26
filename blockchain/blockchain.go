@@ -13,24 +13,15 @@ type Blockchain struct {
 	PendingTxns []Transaction
 }
 
-func NewBlockchain() *Blockchain {
-	return &Blockchain{[]Block{CreateGenesisBlock()}, []Transaction{}}
-}
-
-func (bc *Blockchain) AddTransaction(sender, receiver string, amount float64) {
-	txn := Transaction{
-		Sender:   sender,
-		Receiver: receiver,
-		Amount:   amount,
-	}
-	bc.PendingTxns = append(bc.PendingTxns, txn)
-}
-
 func generateDifficulty(difficulty int) string {
 	if difficulty <= 0 {
 		return ""
 	}
 	return strings.Repeat("0", difficulty)
+}
+
+func NewBlockchain() *Blockchain {
+	return &Blockchain{[]Block{CreateGenesisBlock()}, []Transaction{}}
 }
 
 func (bc *Blockchain) IsValid() bool {
@@ -45,6 +36,15 @@ func (bc *Blockchain) IsValid() bool {
 		}
 	}
 	return true
+}
+
+func (bc *Blockchain) AddTransaction(sender, receiver string, amount float64) {
+	txn := Transaction{
+		Sender:   sender,
+		Receiver: receiver,
+		Amount:   amount,
+	}
+	bc.PendingTxns = append(bc.PendingTxns, txn)
 }
 
 func (bc *Blockchain) MinePendingTransactions() {
