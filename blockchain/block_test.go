@@ -39,7 +39,7 @@ func TestCreateGenesisBlock(t *testing.T) {
 	}
 }
 
-func GenerateDifficultyTest(t *testing.T) {
+func TestGenerateDifficulty(t *testing.T) {
 	rn := rand.Intn(99999)
 	diff := GenerateDifficulty(rn)
 
