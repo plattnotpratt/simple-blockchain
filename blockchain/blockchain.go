@@ -13,7 +13,7 @@ type Blockchain struct {
 	PendingTxns []Transaction
 }
 
-func generateDifficulty(difficulty int) string {
+func GenerateDifficulty(difficulty int) string {
 	if difficulty <= 0 {
 		return ""
 	}
@@ -63,7 +63,7 @@ func (bc *Blockchain) MinePendingTransactions() {
 }
 
 func (b *Block) mineBlock(difficulty int) {
-	difficultyString := generateDifficulty(difficulty)
+	difficultyString := GenerateDifficulty(difficulty)
 	for {
 		b.Hash = b.CalculateHash()
 		if b.Hash[:difficulty] == difficultyString {
