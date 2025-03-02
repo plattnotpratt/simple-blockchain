@@ -2,6 +2,7 @@ package blockchain
 
 import (
 	"math/rand"
+	"strings"
 	"testing"
 	"time"
 )
@@ -39,11 +40,22 @@ func TestCreateGenesisBlock(t *testing.T) {
 	}
 }
 
-func TestGenerateDifficulty(t *testing.T) {
+func TestGenerateDifficultyLength(t *testing.T) {
 	rn := rand.Intn(99999)
 	diff := GenerateDifficulty(rn)
 
 	if len(diff) != rn {
 		t.Errorf("length of difficulty does not match. Expected %d, got %d", rn, len(diff))
+	}
+}
+
+func TestGenerateDifficultyValue(t *testing.T) {
+	rn := rand.Intn(10)
+	diff := strings.Split(GenerateDifficulty(rn), "")
+	for i := 0; i < len(diff); i++ {
+		if diff[i] != "0" {
+			t.Errorf("The character of the difficulty is incorrect. At index %d expected '0' and got %s", i, diff[i])
+			return
+		}
 	}
 }
