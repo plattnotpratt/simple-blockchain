@@ -1,6 +1,7 @@
 package blockchain
 
 import (
+	"math/rand"
 	"testing"
 	"time"
 )
@@ -35,5 +36,14 @@ func TestCreateGenesisBlock(t *testing.T) {
 
 	if len(gb.Hash) != 64 {
 		t.Errorf("Hash is not the proper length: got %d and expected 64", len(gb.Hash))
+	}
+}
+
+func GenerateDifficultyTest(t *testing.T) {
+	rn := rand.Intn(99999)
+	diff := GenerateDifficulty(rn)
+
+	if len(diff) != rn {
+		t.Errorf("length of difficulty does not match. Expected %d, got %d", rn, len(diff))
 	}
 }
